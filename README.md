@@ -1,3 +1,3 @@
 # Soffi AR Project
 
-Instructions to deploy on GitHub Pages.
+Scan the marker to see Soffi's waving avatar.
