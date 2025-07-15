@@ -2,15 +2,27 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>AR Avatar</title>
+    <title>AR Avatar with DRACO</title>
     <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/ar.js@3.3.2/aframe/build/aframe-ar.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.152.2/examples/js/loaders/DRACOLoader.js"></script>
+    <script>
+      AFRAME.registerComponent('use-draco', {
+        init: function () {
+          var loader = this.el.components['gltf-model'].loader;
+          var dracoLoader = new THREE.DRACOLoader();
+          dracoLoader.setDecoderPath('https://www.gstatic.com/draco/v1/decoders/');
+          loader.setDRACOLoader(dracoLoader);
+        }
+      });
+    </script>
   </head>
   <body style="margin: 0; overflow: hidden;">
     <a-scene embedded arjs="sourceType: webcam;">
       <a-marker preset="hiro">
         <a-entity 
           gltf-model="https://models.readyplayer.me/6875d2a0647d04446c83f3ea.glb"
+          use-draco
           scale="0.6 0.6 0.6"
           rotation="0 180 0"
           position="0 0 0">
